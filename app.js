@@ -97,13 +97,15 @@ function renderRect(position) {
   });
   rectangles[key] = rectangle;
 }
+
 function signUp(email, password) {
   console.log("ASDF");
   $.ajax({
     type: 'POST',
     crossDomain: true,
     dataType: 'json',
-    data: {email: email, password:password},
+    data: JSON.stringify({email: email, password:password}),
+    contentType: 'application/json',
     url:'https://our-place.herokuapp.com/users',
     success: function(data) {
       console.log(data);
@@ -114,6 +116,40 @@ function signUp(email, password) {
         $("#login_form").fadeOut();
       }
     }
+  });
+}
+
+function signIn(email, password) {
+  $.ajax({
+    type: 'POST',
+    crossDomain: true,
+    dataType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify({email: email, password:password}),
+    url:'https://our-place.herokuapp.com/login',
+    success: function(data) {
+      console.log(data);
+      if (data.token) {
+        token = data.token;
+        localEmail = data.email
+        $("#overlay").fadeOut();
+        $("#login_form").fadeOut();
+      }
+    },
+  });
+}
+
+function logout() {
+  $.ajax({
+    type: 'DELETE',
+    crossDomain: true,
+    dataType: 'json',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Authorization token=', token);
+    },
+    url:'https://our-place.herokuapp.com/logout',
+    success: function(data) {
+    },
   });
 }
 
@@ -169,6 +205,9 @@ $(document).ready(function(){
     $("#overlay").fadeIn();
     $("#login_form").fadeIn();
   });
+  $("#login").click(function(){
+    logout();
+  });
   $("#overlay").click(function(e){
     console.log(e.target.id)
     if(e.target.id != "overlay"){
@@ -183,6 +222,7 @@ $(document).ready(function(){
   $("#sign_in").click(function(){
       var username = $("#username").val()
       var password = $("#password").val()
+      signIn(username, password);
   })
   $("#sign_up").click(function(){
       var username = $("#username").val()
