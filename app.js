@@ -22,6 +22,8 @@ function sendLocation(colour) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var latitude =  position.coords.latitude;
         var longitude = position.coords.longitude;
+        map.setCenter(new google.maps.LatLng(latitude, longitude));
+        map.setZoom(20);
         var pos = {
           latitude: latitude,
           longitude: longitude,
@@ -96,7 +98,7 @@ function renderRect(position) {
   rectangles[key] = rectangle;
 }
 
-function requestLocation() {
+function centerLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var latitude =  position.coords.latitude;
@@ -110,7 +112,7 @@ $(document).ready(function(){
   last_updated_at = 0;
   var is_interace_open = false;
   getRects();
-  requestLocation();
+  centerLocation();
   var myVar = setInterval(function(){getRects()}, 2000);
   $("#peek").click(function(){
     if (is_interace_open){
