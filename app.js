@@ -8,13 +8,13 @@ function initMap() {
   last_updated_at = 0;
 }
 
-function sendLocation() {
+function sendLocation(colour) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
-          colour: "#FFFFFF"
+          colour: colour
         };
         $.ajax({
           url:'https://our-place.herokuapp.com/pixels',
@@ -51,14 +51,14 @@ function getRects() {
   });
 }
 postPixel = function(colour){
-  console.log(colour);
+  sendLocation(colour)
 }
 
 function renderRect(position) {
   key = position.north.concat(",", position.west);
   if (key in rectangles) {
     rectangles[key].setMap(null);
-
+  }
   var rectangle = new google.maps.Rectangle({
     strokeColor: element.colour,
     strokeOpacity: .75,
