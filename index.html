@@ -1,5 +1,15 @@
 <html>
 <head>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59912105-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
@@ -27,7 +37,40 @@
 </head>
 <body>
 <div id="overlay">
+<div id="modal">
+<div id="paypal"><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+  <!-- Identify your business so that you can collect the payments. -->
+  <input type="hidden" name="business" value="herschelgomez@xyzzyu.com">
+
+  <!-- Specify a Buy Now button. -->
+  <input type="hidden" name="cmd" value="_xclick">
+
+  <!-- Specify details about the item that buyers will purchase. -->
+  <input type="hidden" name="item_name" value="Premium Umbrella">
+  <input type="hidden" name="amount" value="50.00">
+  <input type="hidden" name="currency_code" value="USD">
+
+  <!-- Provide a drop-down menu option field. -->
+  <input type="hidden" name="on0" value="Type">Value <br />
+  <select name="os0">
+    <option value="Select Type">-- Select Type --</option>
+    <option value="Standard">3.99</option>
+    <option value="Collapsable">7.99</option>
+  </select> <br />
+
+  <!-- Display the payment button. -->
+  <input type="image" name="submit" border="0"
+    src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png"
+    alt="Buy Now">
+
+  <img alt="" border="0" width="1" height="1"
+  src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+
+</form></div>
 <div id="login_form">
+<<<<<<< HEAD
+<div><span class="text">Username:</span> <input type="text" id="username"name="user" class="input_sign_in"></div>
 <div id="form">
 <div><span class="text">Email:</span> <input type="text" id="username"name="user" class="input_sign_in"></div>
 <div><span class="text">Password:</span> <input type="password" id="password"name="password" class="input_sign_in"></div><div>
@@ -43,6 +86,7 @@
 	</div>
 	<div id="right">
   	<ul>
+      <li id="buy">Buy</li>
       <li id="login">Login</li>
       <li id="logout">Log out</li>
   	</ul>

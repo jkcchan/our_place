@@ -29,8 +29,14 @@
 800#37474F
 900#263238
 */
-#form{
-	display:flex;
+#login_form{
+	display:none;
+	flex-wrap:wrap;
+	width:100%;
+	justify-content:center;
+}
+#paypal{
+	display:none;
 	flex-wrap:wrap;
 	width:100%;
 	justify-content:center;
@@ -44,10 +50,10 @@
 	display:none;
 	vertical-align:middle;
 }
-#login_form{
+#modal{
 	margin:auto;
 	margin-top:1em;
-	display:none;
+	display:flex;
 	max-width:40vh;
 	background-color:white;
 	padding:1em;
