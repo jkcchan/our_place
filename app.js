@@ -12,17 +12,28 @@ function sendLocation(colour) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
           colour: colour
         };
+        // var temp = {
+        //   north: pos.latitude+0.001,
+        //   south: pos.latitude,
+        //   east: pos.longitude+0.001,
+        //   west: pos.longitude,
+        //   colour: colour
+        // }
+        // renderRect(test)
+        console.log(pos);
         $.ajax({
           url:'https://our-place.herokuapp.com/pixels',
           type: 'POST',
           crossDomain: true,
+          dataType: 'json',
           contentType: 'application/json',
-          data: pos,
+          data: JSON.stringify(pos),
           success: function(data) {
+            console.log(data)
             renderRect(data);
           }
         });
@@ -50,20 +61,27 @@ function getRects() {
     }
   });
 }
-postPixel = function(colour){
-  sendLocation(colour)
+function postPixel(colour){
+  sendLocation(rgb2hex(colour))
 }
 
+function rgb2hex(rgb){
+ rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+ return (rgb && rgb.length === 4) ? "#" +
+  ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+  ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+  ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+}
 function renderRect(position) {
-  key = position.north.concat(",", position.west);
+  key = position.south + "," + position.west;
   if (key in rectangles) {
     rectangles[key].setMap(null);
   }
   var rectangle = new google.maps.Rectangle({
-    strokeColor: element.colour,
+    strokeColor: position.colour,
     strokeOpacity: .75,
     strokeWeight: 1,
-    fillColor: element.colour,
+    fillColor: position.colour,
     fillOpacity: 0.75,
     map: map,
     bounds: {
@@ -73,7 +91,7 @@ function renderRect(position) {
       west: position.west
     }
   });
-  rectangles[key] = retangle;
+  rectangles[key] = rectangle;
 }
 
 $(document).ready(function(){
