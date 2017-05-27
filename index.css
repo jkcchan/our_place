@@ -1,5 +1,35 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
+
+
+
+ /*
+ Indigo
+500 #3F51B5
+50#E8EAF6
+100#C5CAE9
+200#9FA8DA
+300#7986CB
+400#5C6BC0
+500#3F51B5
+600#3949AB
+700#303F9F
+800#283593
+900#1A237E
+ blue grey
+500 #607D8B
+50#ECEFF1
+100#CFD8DC
+200#B0BEC5
+300#90A4AE
+400#78909C
+500#607D8B
+600#546E7A
+700#455A64
+800#37474F
+900#263238
+*/
+
 #map {
   height: 80vh;
 }
@@ -17,9 +47,10 @@ html, body {
 #peek{
 	height:10vh;
 	width:100vw;
-	background-color:#dddddd;
+	background-color:#3F51B5;
 	display:flex;
 	justify-content:center;
+	align-items:center;
 }
 #drop_interface{
 	height: 50vh;
@@ -32,42 +63,63 @@ html, body {
 	width:100vw;
 	display:flex;
 	justify-content:center;
+	margin-top:2em;
+	margin-bottom:2em;
 }
 .colour_box{
-	flex: 1 1 1;
-	width:30vw;
-	height:30vw;
+	width:20vw;
+	height:16vw;
 	padding:7px;
+	flex-basis:1;
+	display:flex;
 
 	border:3px solid white;
 }
 .selected{
-	border:3px dotted black;
+	border:3px solid #5f5fc4;
 }
 .not_selected{
 	border:3px solid white;
 }
 #red{
-	background-color:#ff0000;
+	background-color:#F44336;
 }
 #green{
-background-color:#00ff00;
+background-color:#43A047;
 }
 #blue{
-background-color:#0000ff;
+background-color:#1E88E5;
+}
+#orange{
+	background-color:#EF6C00;
+}
+#purple{
+background-color:#9C27B0;
+}
+#black{
+background-color:#000000;
 }
 #post_button{
 	display:flex;
 	justify-content:center;
+	margin:2em;
 }
 #post_pixel{
-    background-color: grey; /* Green */
+	background-color:#828593;
     border: none;
-    color: white;
+    color: #dddddd;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     cursor:pointer;
+}
+p, button{
+	font-family: 'Work Sans', sans-serif;
+	color:white;
+}
+h1, h2, h3 {
+
+font-family: 'Space Mono', monospace;
 }
