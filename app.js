@@ -89,6 +89,10 @@ $(document).ready(function(){
     }
   });
   $("#post_pixel").click(function(){
-    postPixel($(this).css('background-color'));
+    var c = $(this).css('background-color')
+    if(c == 'rgb(128, 128, 128)'){return;}
+    else{
+      postPixel($(this).css('background-color'));
+    }
   })
 })
