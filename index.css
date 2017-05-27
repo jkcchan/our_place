@@ -176,7 +176,7 @@ background-color:#000000;
 }
 li{
 		font-family: 'Work Sans', sans-serif;
-	-webkit-user-select: none; /* Chrome/Safari */        
+	-webkit-user-select: none; /* Chrome/Safari */
 -moz-user-select: none; /* Firefox */
 -ms-user-select: none; /* IE10+ */
 
@@ -192,6 +192,7 @@ padding-right:1em;
 	margin:1em;
 }
 .button2{
+  margin: 10px;
 	background-color:#3F51B5;
     border: none;
     color: #ffffff;
@@ -206,7 +207,7 @@ padding-right:1em;
 	color:black;
 		margin:0;
 	font-family: 'Work Sans', sans-serif;
-	-webkit-user-select: none; /* Chrome/Safari */        
+	-webkit-user-select: none; /* Chrome/Safari */
 -moz-user-select: none; /* Firefox */
 -ms-user-select: none; /* IE10+ */
 
@@ -218,7 +219,7 @@ p, button{
 	margin:0;
 	font-family: 'Work Sans', sans-serif;
 	color:white;
-	-webkit-user-select: none; /* Chrome/Safari */        
+	-webkit-user-select: none; /* Chrome/Safari */
 -moz-user-select: none; /* Firefox */
 -ms-user-select: none; /* IE10+ */
 
@@ -232,7 +233,7 @@ h1, h2, h3 {
 	color:rgb(63, 81, 181);
 margin:0px;
 font-family: 'Space Mono', monospace;
--webkit-user-select: none; /* Chrome/Safari */        
+-webkit-user-select: none; /* Chrome/Safari */
 -moz-user-select: none; /* Firefox */
 -ms-user-select: none; /* IE10+ */
 
