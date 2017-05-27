@@ -23,6 +23,7 @@ function sendLocation(colour) {
         var latitude =  position.coords.latitude;
         var longitude = position.coords.longitude;
         map.setCenter(new google.maps.LatLng(latitude, longitude));
+        map.setZoom(20);
         var pos = {
           latitude: latitude,
           longitude: longitude,
