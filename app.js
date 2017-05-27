@@ -114,6 +114,7 @@ $(document).ready(function(){
     if(c == 'rgb(62, 65, 83)'){return;}
     else{
       postPixel($(this).css('background-color'));
+      $("#peek").click();
     }
   })
 });
