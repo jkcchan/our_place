@@ -1,11 +1,24 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-  height: 100%;
+  height: 95%;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+#peek{
+	position:absolute;
+	height:5%;
+	width:100%;
+	background-color:#dddddd;
+	display:flex;
+	justify-content:center;
+}
+#drop_interface{
+	height: 50%;
+	position:absolute;
+	display:none;
 }

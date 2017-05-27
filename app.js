@@ -22,3 +22,8 @@ function initMap() {
     }
   });
 }
+$(document).ready(function(){
+  $("#peek").click(function(){
+    console.log('asdf');
+  })  
+})
