@@ -30,6 +30,10 @@
 900#263238
 */
 #lock{
+	height:40%;
+}
+#lock2{
+	height:1em;
 }
 #top{
 	width:100vw;
@@ -120,6 +124,17 @@ background-color:#000000;
 	margin:2em;
 }
 #post_pixel{
+	background-color:#828593;
+    border: none;
+    color: #dddddd;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor:pointer;
+}
+#post_and_protect{
 	background-color:#828593;
     border: none;
     color: #dddddd;
