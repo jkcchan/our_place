@@ -50,11 +50,15 @@ function getRects() {
     }
   });
 }
+postPixel = function(colour){
+  console.log(colour);
+}
+
 function renderRect(position) {
   key = position.north.concat(",", position.west);
   if (key in rectangles) {
     rectangles[key].setMap(null);
-  }
+
   var rectangle = new google.maps.Rectangle({
     strokeColor: element.colour,
     strokeOpacity: .75,
@@ -88,10 +92,15 @@ $(document).ready(function(){
     if($(this).hasClass('not_selected')){
       $(".colour_box").addClass('not_selected');
       $(this).removeClass('not_selected').addClass('selected')
+      $("#post_pixel").css('background-color', $(this).css('background-color'))
     }
     else {
       $(this).removeClass('selected');
       $(".colour_box").addClass('not_selected')
+      $("#post_pixel").css('background-color', 'grey')
     }
+  });
+  $("#post_pixel").click(function(){
+    postPixel($(this).css('background-color'));
   })
 })
