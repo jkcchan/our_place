@@ -97,12 +97,14 @@ function renderRect(position) {
 }
 
 function requestLocation() {
-  navigator.geolocation.getCurrentPosition(function(data) {
-    var latitude =  position.coords.latitude;
-    var longitude = position.coords.longitude;
-    map.setCenter(new google.maps.LatLng(latitude, longitude));
-    map.setZoom(15);
-  });
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var latitude =  position.coords.latitude;
+      var longitude = position.coords.longitude;
+      map.setCenter(new google.maps.LatLng(latitude, longitude));
+      map.setZoom(17);
+    });
+  }
 }
 $(document).ready(function(){
   last_updated_at = 0;
