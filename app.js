@@ -206,9 +206,6 @@ $(document).ready(function(){
     $("#modal").animate({"opacity":1});
     $("#login_form").fadeIn();
   });
-  $("#login").click(function(){
-    logout();
-  });
   $("#buy").click(function(){
     $("#overlay").fadeIn();
     $("#modal").animate({"opacity":1});
@@ -219,7 +216,6 @@ $(document).ready(function(){
       return;
     }
     else{
-
     $("#overlay").fadeOut();
     $("#modal").animate({"opacity":0});
     $("#paypal").fadeOut();
