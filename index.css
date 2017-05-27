@@ -32,17 +32,16 @@
 #login_form{
 	display:none;
 	flex-wrap:wrap;
-	width:100%;
 	justify-content:center;
 }
 #paypal{
 	display:none;
 	flex-wrap:wrap;
-	width:100%;
 	justify-content:center;
 }
 #overlay{
-	height:100vh;
+	height:calc(100vh - 50px);
+	top:50px;
 	width:100vw;
 	background-color:rgba(0,0,0,0.3);
 	position:absolute;
@@ -51,12 +50,17 @@
 	vertical-align:middle;
 }
 #modal{
+	top:50px;
+	opacity:0;
 	margin:auto;
 	margin-top:1em;
 	display:flex;
-	max-width:40vh;
+	width:100vw;
 	background-color:white;
-	padding:1em;
+	position:absolute;
+	z-index:99999999999999;
+	margin:auto;
+	justify-content:center;
 }
 
 #lock{
@@ -78,6 +82,9 @@
 	height: 40px;
 	vertical-align: top !important;
 	cursor:pointer;
+}
+#logout{
+	display:none;
 }
 #map {
 	margin-top:50px;

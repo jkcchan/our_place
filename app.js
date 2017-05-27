@@ -164,6 +164,7 @@ function centerLocation() {
   }
 }
 $(document).ready(function(){
+  
   last_updated_at = 0;
   var is_interace_open = false;
   getRects();
@@ -193,20 +194,36 @@ $(document).ready(function(){
       $("#post_pixel").css({'background-color': '#455a64', 'color':'#eeeeee'});
     }
   });
+  $("#post_and_protect").click(function(){
+    $("#buy").click();
+    return;
+  })
   $("#post_pixel").click(function(){
     var c = $(this).css('background-color')
     if(c == 'rgb(62, 65, 83)'){return;}
+    else if(c == 'rgb(0, 0, 0)' || c == 'rgb(156, 39, 176)'){
+      $("#buy").click();
+      return;
+    }
     else{
       postPixel($(this).css('background-color'));
       $("#peek").click();
     }
   });
   $("#login").click(function(){
+    $("#paypal").hide();
     $("#overlay").fadeIn();
     $("#modal").animate({"opacity":1});
     $("#login_form").fadeIn();
   });
+  $("#logout").click(function(){
+    logout();
+
+    $("#login").css('display','inline');
+    $("#logout").hide();
+  })
   $("#buy").click(function(){
+    $("#login_form").hide();
     $("#overlay").fadeIn();
     $("#modal").animate({"opacity":1});
     $("#paypal").fadeIn();
@@ -226,10 +243,16 @@ $(document).ready(function(){
       var username = $("#username").val()
       var password = $("#password").val()
       signIn(username, password);
+      $("#overlay").click();
+    $("#login").hide();
+    $("#logout").css('display','inline');
   })
   $("#sign_up").click(function(){
       var username = $("#username").val()
       var password = $("#password").val()
       signUp(username, password);
+$("#overlay").click();
+    $("#login").hide();
+    $("#logout").css('display','inline');
   })
 });

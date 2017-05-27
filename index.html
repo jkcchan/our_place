@@ -10,6 +10,8 @@
   ga('send', 'pageview');
 
 </script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
 <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
@@ -34,10 +36,47 @@
 <script src="app.js" type="text/javascript"></script>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>our place</title>
+<script>
+        paypal.Button.render({
+
+            env: 'sandbox', // sandbox | production
+
+            // PayPal Client IDs - replace with your own
+            // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+            client: {
+                sandbox:    'ARfw73lG0ymVgNT_R9Z_FmxvWddklhRRPRkg4VtDovWYTjec4hf7p8Y_QdocDXdCUSTQjtu_QTRLs8qB'
+            },
+
+            // Show the buyer a 'Pay Now' button in the checkout flow
+            commit: true,
+
+            // payment() is called when the button is clicked
+            payment: function(data, actions) {
+
+                // Make a call to the REST api to create the payment
+                return actions.payment.create({
+                    transactions: [
+                        {
+                            amount: { total: '0.01', currency: 'USD' }
+                        }
+                    ]
+                });
+            },
+
+            // onAuthorize() is called when the buyer approves the payment
+            onAuthorize: function(data, actions) {
+
+                // Make a call to the REST api to execute the payment
+                return actions.payment.execute().then(function() {
+                    window.alert('Payment Complete!');
+                });
+            }
+
+        }, '#paypal-button-container');</script>
 </head>
 <body>
-<div id="overlay">
-<div id="modal"></div>
+<div id="overlay"></div>
+<div id="modal">
 <div id="paypal"><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 
   <!-- Identify your business so that you can collect the payments. -->
@@ -60,16 +99,12 @@
   </select> <br />
 
   <!-- Display the payment button. -->
-  <input type="image" name="submit" border="0"
-    src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png"
-    alt="Buy Now">
-
+  <div id="paypal-button-container"></div>
   <img alt="" border="0" width="1" height="1"
   src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
 </form></div>
 <div id="login_form">
-<div><span class="text">Username:</span> <input type="text" id="username"name="user" class="input_sign_in"></div>
 <div id="form">
 <div><span class="text">Email:</span> <input type="text" id="username"name="user" class="input_sign_in"></div>
 <div><span class="text">Password:</span> <input type="password" id="password"name="password" class="input_sign_in"></div><div>
