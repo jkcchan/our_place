@@ -146,16 +146,23 @@ $(document).ready(function(){
   });
   $("#login").click(function(){
     $("#overlay").fadeIn();
+    $("#modal").animate({"opacity":1});
     $("#login_form").fadeIn();
   });
+  $("#buy").click(function(){
+    $("#overlay").fadeIn();
+    $("#modal").animate({"opacity":1});
+    $("#paypal").fadeIn();
+  });
   $("#overlay").click(function(e){
-    console.log(e.target.id)
     if(e.target.id != "overlay"){
       return;
     }
     else{
 
     $("#overlay").fadeOut();
+    $("#modal").animate({"opacity":0});
+    $("#paypal").fadeOut();
     $("#login_form").fadeOut();
     }
   });
