@@ -1,11 +1,4 @@
 // This example adds a red rectangle to a map.
-
-$(document).ready(function(){
-  $("peek").click(function(){
-    console.log("asdf")
-  });
-});
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
@@ -45,3 +38,16 @@ function getDots() {
     }
   });
 }
+$(document).ready(function(){
+  var is_interace_open = false;
+  $("#peek").click(function(){
+    if (is_interace_open){
+      $("#peek").animate({"bottom":'0vh'});
+    }
+    else{
+      $("#peek").animate({"bottom":'50vh'});
+    }
+      $("#drop_interface").slideToggle();
+    is_interace_open = !is_interace_open;
+  })
+})
