@@ -29,6 +29,29 @@
 800#37474F
 900#263238
 */
+#form{
+	display:flex;
+	flex-wrap:wrap;
+	width:100%;
+	justify-content:center;
+}
+#overlay{
+	height:100vh;
+	width:100vw;
+	background-color:rgba(0,0,0,0.3);
+	position:absolute;
+	z-index:999999999;
+	display:none;
+	vertical-align:middle;
+}
+#login_form{
+	margin:auto;
+	margin-top:1em;
+	display:none;
+	max-width:40vh;
+	background-color:white;
+	padding:1em;
+}
 #lock{
 	height:40%;
 }
@@ -158,6 +181,32 @@ cursor:pointer;
 margin-left:auto;
 display:inline;
 padding-right:1em;
+}
+.input_sign_in{
+	margin:1em;
+}
+.button2{
+	background-color:#3F51B5;
+    border: none;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor:pointer;
+}
+.text{
+	color:black;
+		margin:0;
+	font-family: 'Work Sans', sans-serif;
+	-webkit-user-select: none; /* Chrome/Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+ */
+
+/* Rules below not implemented in browsers yet */
+-o-user-select: none;
+user-select: none;
 }
 p, button{
 	margin:0;

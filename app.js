@@ -143,5 +143,28 @@ $(document).ready(function(){
       postPixel($(this).css('background-color'));
       $("#peek").click();
     }
+  });
+  $("#login").click(function(){
+    $("#overlay").fadeIn();
+    $("#login_form").fadeIn();
+  });
+  $("#overlay").click(function(e){
+    console.log(e.target.id)
+    if(e.target.id != "overlay"){
+      return;
+    }
+    else{
+
+    $("#overlay").fadeOut();
+    $("#login_form").fadeOut();
+    }
+  });
+  $("#sign_in").click(function(){
+      var username = $("#username").val()
+      var password = $("#password").val()
+  })
+  $("#sign_up").click(function(){
+      var username = $("#username").val()
+      var password = $("#password").val()
   })
 });
