@@ -14,7 +14,6 @@ function sendLocation() {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
-          colour:
         };
         $.post("route/pixels", pos);
       }, function() {
@@ -38,6 +37,9 @@ function getDots() {
     }
   });
 }
+postPixel = function(colour){
+  console.log(colour);
+}
 $(document).ready(function(){
   var is_interace_open = false;
   $("#peek").click(function(){
@@ -54,10 +56,15 @@ $(document).ready(function(){
     if($(this).hasClass('not_selected')){
       $(".colour_box").addClass('not_selected');
       $(this).removeClass('not_selected').addClass('selected')
+      $("#post_pixel").css('background-color', $(this).css('background-color'))
     }
     else {
       $(this).removeClass('selected');
       $(".colour_box").addClass('not_selected')
+      $("#post_pixel").css('background-color', 'grey')
     }
+  });
+  $("#post_pixel").click(function(){
+    postPixel($(this).css('background-color'));
   })
 })
