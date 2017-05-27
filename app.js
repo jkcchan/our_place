@@ -106,7 +106,7 @@ $(document).ready(function(){
   var is_interace_open = false;
   getRects();
   requestLocation();
-  var myVar = setInterval(function(){getRects()}, 5000);
+  var myVar = setInterval(function(){getRects()}, 2000);
   $("#peek").click(function(){
     if (is_interace_open){
       $("#peek").animate({"bottom":'0vh'});
