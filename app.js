@@ -16,15 +16,6 @@ function sendLocation(colour) {
           longitude: position.coords.longitude,
           colour: colour
         };
-        // var temp = {
-        //   north: pos.latitude+0.001,
-        //   south: pos.latitude,
-        //   east: pos.longitude+0.001,
-        //   west: pos.longitude,
-        //   colour: colour
-        // }
-        // renderRect(test)
-        console.log(pos);
         $.ajax({
           url:'https://our-place.herokuapp.com/pixels',
           type: 'POST',
@@ -33,7 +24,6 @@ function sendLocation(colour) {
           contentType: 'application/json',
           data: JSON.stringify(pos),
           success: function(data) {
-            console.log(data)
             renderRect(data);
           }
         });
@@ -55,7 +45,6 @@ function getRects() {
     success: function(data) {
       last_updated_at = new Date().getTime()
       $.each(data, function(index, element) {
-        console.log(element);
         renderRect(element);
       });
     }
@@ -96,6 +85,7 @@ function renderRect(position) {
 
 $(document).ready(function(){
   var is_interace_open = false;
+  var intervalID = setInterval(function(){getRects()}, 60000);
   $("#peek").click(function(){
     if (is_interace_open){
       $("#peek").animate({"bottom":'0vh'});
