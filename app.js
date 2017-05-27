@@ -46,6 +46,7 @@ function getRects() {
       last_updated_at = new Date().getTime()
       $.each(data, function(index, element) {
         renderRect(element);
+        console.log("LOL");
       });
     }
   });
@@ -85,7 +86,8 @@ function renderRect(position) {
 
 $(document).ready(function(){
   var is_interace_open = false;
-  var intervalID = setInterval(function(){getRects()}, 60000);
+  getRects();
+  var myVar = setInterval(function(){getRects()}, 10000);
   $("#peek").click(function(){
     if (is_interace_open){
       $("#peek").animate({"bottom":'0vh'});
