@@ -98,6 +98,7 @@ function renderRect(position) {
   rectangles[key] = rectangle;
 }
 function signUp(email, password) {
+  console.log("ASDF");
   $.ajax({
     type: 'POST',
     crossDomain: true,
@@ -182,10 +183,10 @@ $(document).ready(function(){
   $("#sign_in").click(function(){
       var username = $("#username").val()
       var password = $("#password").val()
-      signUp(username, password);
   })
   $("#sign_up").click(function(){
       var username = $("#username").val()
       var password = $("#password").val()
+      signUp(username, password);
   })
 });
