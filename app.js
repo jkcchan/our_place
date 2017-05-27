@@ -46,7 +46,6 @@ function getRects() {
       last_updated_at = new Date().getTime()
       $.each(data, function(index, element) {
         renderRect(element);
-        console.log("LOL");
       });
     }
   });
