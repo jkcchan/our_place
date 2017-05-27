@@ -98,7 +98,10 @@ function renderRect(position) {
 
 function requestLocation() {
   navigator.geolocation.getCurrentPosition(function(data) {
-    return;
+    var latitude =  position.coords.latitude;
+    var longitude = position.coords.longitude;
+    map.setCenter(new google.maps.LatLng(latitude, longitude));
+    map.setZoom(15);
   });
 }
 $(document).ready(function(){
