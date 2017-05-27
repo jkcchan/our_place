@@ -5,7 +5,6 @@ function initMap() {
     mapTypeId: 'terrain'
   });
   rectangles = {};
-  last_updated_at = 0;
 }
 
 function sendLocation(colour) {
@@ -43,6 +42,7 @@ function getRects() {
     data: {"last_updated_at": last_updated_at},
     url:'https://our-place.herokuapp.com/pixels',
     success: function(data) {
+      console.log("SWAG");
       last_updated_at = new Date().getTime()
       $.each(data, function(index, element) {
         renderRect(element);
@@ -84,6 +84,7 @@ function renderRect(position) {
 }
 
 $(document).ready(function(){
+  last_updated_at = 0;
   var is_interace_open = false;
   getRects();
   var myVar = setInterval(function(){getRects()}, 10000);
