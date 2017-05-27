@@ -97,6 +97,21 @@ function renderRect(position) {
   });
   rectangles[key] = rectangle;
 }
+function signUp(email, password) {
+  $.ajax({
+    type: 'POST',
+    crossDomain: true,
+    dataType: 'json',
+    data: {email: email, password:password},
+    url:'https://our-place.herokuapp.com/users',
+    success: function(data) {
+      if (data.token) {
+        token = data.token;
+        localEmail = data.email
+      }
+    }
+  });
+}
 
 function centerLocation() {
   if (navigator.geolocation) {
@@ -113,6 +128,8 @@ $(document).ready(function(){
   var is_interace_open = false;
   getRects();
   centerLocation();
+  localEmail = "";
+  token = "";
   var myVar = setInterval(function(){getRects()}, 2000);
   $("#peek").click(function(){
     if (is_interace_open){
@@ -162,6 +179,7 @@ $(document).ready(function(){
   $("#sign_in").click(function(){
       var username = $("#username").val()
       var password = $("#password").val()
+      signUp(username, password);
   })
   $("#sign_up").click(function(){
       var username = $("#username").val()
