@@ -23,7 +23,16 @@ function initMap() {
   });
 }
 $(document).ready(function(){
+  var is_interace_open = false;
   $("#peek").click(function(){
-    console.log('asdf');
+    if (is_interace_open){
+      $("#peek").animate({"bottom":'0vh'});
+    }
+    else{
+      $("#peek").animate({"bottom":'50vh'});
+    }
+
+      $("#drop_interface").slideToggle();
+    is_interace_open = !is_interace_open;
   })  
 })

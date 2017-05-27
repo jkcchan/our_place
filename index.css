@@ -1,24 +1,51 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-  height: 95%;
+  height: 80vh;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
-  height: 100%;
+  height: 90vh;
   margin: 0;
   padding: 0;
+  display:flex;
+  flex-direction:column;
+}
+#interface{
+	width:100vw;
 }
 #peek{
-	position:absolute;
-	height:5%;
-	width:100%;
+	height:10vh;
+	width:100vw;
 	background-color:#dddddd;
 	display:flex;
 	justify-content:center;
 }
 #drop_interface{
-	height: 50%;
-	position:absolute;
+	height: 50vh;
+	bottom:0vh;
 	display:none;
+	background-color:white;
+	width:100vw;
+}
+#colour_picker{
+	width:100vw;
+	padding-left:3vw;
+	padding-right:3vw;
+	padding-top:3vw;
+	padding-bottom:3vw;
+	display:flex;
+}
+.colour_box{
+	border:3px solid white;
+
+}
+#red{
+	background-color:red;
+}
+#green{
+background-color:green;
+}
+#blue{
+background-color:blue;
 }
