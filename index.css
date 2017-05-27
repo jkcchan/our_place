@@ -1,0 +1,7 @@
+.pixel{
+	width:10px;
+	height:10px;
+}
+.pixel#pixel_1{
+	background-color:black;
+}
