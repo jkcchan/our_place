@@ -29,6 +29,8 @@
 800#37474F
 900#263238
 */
+#lock{
+}
 #top{
 	width:100vw;
 	height: 50px;
@@ -41,6 +43,7 @@
 #top img{
 	height: 40px;
 	vertical-align: top !important;
+	cursor:pointer;
 }
 #map {
 	margin-top:50px;
@@ -84,7 +87,6 @@ html, body {
 	height:16vw;
 	padding:7px;
 	flex-basis:1;
-	display:flex;
 
 	border:3px solid white;
 }
@@ -155,6 +157,9 @@ p, button{
 user-select: none;
 }
 h1, h2, h3 {
+	cursor:pointer;
+	font-weight:700;
+	color:rgb(63, 81, 181);
 margin:0px;
 font-family: 'Space Mono', monospace;
 -webkit-user-select: none; /* Chrome/Safari */        
