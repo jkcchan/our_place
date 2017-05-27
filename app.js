@@ -58,7 +58,7 @@ function renderRect(position) {
   key = position.north.concat(",", position.west);
   if (key in rectangles) {
     rectangles[key].setMap(null);
-
+  }
   var rectangle = new google.maps.Rectangle({
     strokeColor: element.colour,
     strokeOpacity: .75,
@@ -92,19 +92,19 @@ $(document).ready(function(){
     if($(this).hasClass('not_selected')){
       $(".colour_box").addClass('not_selected');
       $(this).removeClass('not_selected').addClass('selected')
-      $("#post_pixel").css('background-color', $(this).css('background-color'))
+      $("#post_pixel").css({'background-color': $(this).css('background-color'), 'color':'white'})
     }
     else {
       $(this).removeClass('selected');
       $(".colour_box").addClass('not_selected')
-      $("#post_pixel").css('background-color', 'grey')
+      $("#post_pixel").css({'background-color': '#455a64', 'color':'#eeeeee'});
     }
   });
   $("#post_pixel").click(function(){
     var c = $(this).css('background-color')
-    if(c == 'rgb(128, 128, 128)'){return;}
+    if(c == 'rgb(62, 65, 83)'){return;}
     else{
       postPixel($(this).css('background-color'));
     }
   })
-})
+});
