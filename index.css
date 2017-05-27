@@ -29,7 +29,14 @@
 800#37474F
 900#263238
 */
-
+#top{
+	width:100vw;
+	height: 8vh;
+	padding: 1vh 2vw 1vh 2vw;
+}
+#top img{
+	height: 6vh;
+}
 #map {
   height: 80vh;
 }
@@ -118,8 +125,22 @@ background-color:#000000;
 p, button{
 	font-family: 'Work Sans', sans-serif;
 	color:white;
+	-webkit-user-select: none; /* Chrome/Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+ */
+
+/* Rules below not implemented in browsers yet */
+-o-user-select: none;
+user-select: none;
 }
 h1, h2, h3 {
 
 font-family: 'Space Mono', monospace;
+-webkit-user-select: none; /* Chrome/Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+ */
+
+/* Rules below not implemented in browsers yet */
+-o-user-select: none;
+user-select: none;
 }
