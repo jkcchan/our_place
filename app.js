@@ -53,10 +53,10 @@ function getRects() {
     type: 'GET',
     crossDomain: true,
     dataType: 'json',
-    data: {"last_updated_at": last_updated_at},
+    data: {last_updated_at: last_updated_at, swag:"swag"},
     url:'https://our-place.herokuapp.com/pixels',
     success: function(data) {
-      last_updated_at = new Date().getTime()
+      last_updated_at = (new Date().getTime()/1000)
       $.each(data, function(index, element) {
         renderRect(element);
       });
