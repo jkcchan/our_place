@@ -30,22 +30,29 @@ html, body {
 }
 #colour_picker{
 	width:100vw;
-	padding-left:3vw;
-	padding-right:3vw;
-	padding-top:3vw;
-	padding-bottom:3vw;
 	display:flex;
+	justify-content:center;
 }
 .colour_box{
+	flex: 1 1 1;
+	width:30vw;
+	height:30vw;
+	padding:7px;
+	
 	border:3px solid white;
-
+}
+.selected{
+	border:3px dotted black;
+}
+.not_selected{
+	border:3px solid white;
 }
 #red{
-	background-color:red;
+	background-color:#ff0000;
 }
 #green{
-background-color:green;
+background-color:#00ff00;
 }
 #blue{
-background-color:blue;
+background-color:#0000ff;
 }

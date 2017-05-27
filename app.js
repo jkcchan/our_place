@@ -34,5 +34,15 @@ $(document).ready(function(){
 
       $("#drop_interface").slideToggle();
     is_interace_open = !is_interace_open;
-  })  
+  });
+  $(".colour_box").click(function(){
+    if($(this).hasClass('not_selected')){
+      $(".colour_box").addClass('not_selected');
+      $(this).removeClass('not_selected').addClass('selected')
+    }
+    else {
+      $(this).removeClass('selected');
+      $(".colour_box").addClass('not_selected')
+    }
+  })
 })
