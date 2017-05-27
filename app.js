@@ -97,16 +97,21 @@ function renderRect(position) {
 }
 
 function requestLocation() {
-  navigator.geolocation.getCurrentPosition(function(data) {
-    return;
-  });
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var latitude =  position.coords.latitude;
+      var longitude = position.coords.longitude;
+      map.setCenter(new google.maps.LatLng(latitude, longitude));
+      map.setZoom(17);
+    });
+  }
 }
 $(document).ready(function(){
   last_updated_at = 0;
   var is_interace_open = false;
   getRects();
   requestLocation();
-  var myVar = setInterval(function(){getRects()}, 10000);
+  var myVar = setInterval(function(){getRects()}, 2000);
   $("#peek").click(function(){
     if (is_interace_open){
       $("#peek").animate({"bottom":'0vh'});
