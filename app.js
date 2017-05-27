@@ -6,13 +6,25 @@ function initMap() {
   });
   rectangles = {};
 }
+function roundTo(n, digits) {
+  if (digits === undefined) {
+    digits = 0;
+  }
+
+  var multiplicator = Math.pow(10, digits);
+  n = parseFloat((n * multiplicator).toFixed(11));
+  var test =(Math.round(n) / multiplicator);
+  return +(test.toFixed(2));
+}
 
 function sendLocation(colour) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
+        var latitude =  position.coords.latitude;
+        var longitude = position.coords.longitude;
         var pos = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          latitude: latitude,
+          longitude: longitude,
           colour: colour
         };
         $.ajax({
@@ -25,7 +37,9 @@ function sendLocation(colour) {
           success: function(data) {
             renderRect(data);
           }
-        });
+        }, function(error) {
+          console.log("Error with the request");
+        }, {maximumAge:10000});
       }, function() {
         console.log("LOCATION DIDNT WORK")
       });
@@ -39,11 +53,10 @@ function getRects() {
     type: 'GET',
     crossDomain: true,
     dataType: 'json',
-    data: {"last_updated_at": last_updated_at},
+    data: {last_updated_at: last_updated_at, swag:"swag"},
     url:'https://our-place.herokuapp.com/pixels',
     success: function(data) {
-      console.log("SWAG");
-      last_updated_at = new Date().getTime()
+      last_updated_at = (new Date().getTime()/1000)
       $.each(data, function(index, element) {
         renderRect(element);
       });
@@ -83,10 +96,16 @@ function renderRect(position) {
   rectangles[key] = rectangle;
 }
 
+function requestLocation() {
+  navigator.geolocation.getCurrentPosition(function(data) {
+    return;
+  });
+}
 $(document).ready(function(){
   last_updated_at = 0;
   var is_interace_open = false;
   getRects();
+  requestLocation();
   var myVar = setInterval(function(){getRects()}, 10000);
   $("#peek").click(function(){
     if (is_interace_open){
