@@ -1,11 +1,10 @@
-// This example adds a red rectangle to a map.
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
     center: {lat: 43.476, lng: -80.536},
     mapTypeId: 'terrain'
   });
-  dots = {}
+  rectangles = [];
 }
 
 function sendLocation() {
@@ -13,7 +12,8 @@ function sendLocation() {
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
+          colour: "#fff"
         };
         $.post("route/pixels", pos);
       }, function() {
@@ -24,15 +24,31 @@ function sendLocation() {
     }
 }
 
-function getDots() {
+function getRects() {
   $.ajax({
     type: 'GET',
     crossDomain: true,
     dataType: 'json',
     url:'https://our-place.herokuapp.com/pixels',
     success: function(data) {
+      deleteAllRects()
       $.each(data, function(index, element) {
         console.log(element)
+        var rectangle = new google.maps.Rectangle({
+          strokeColor: element.colour,
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: map,
+          bounds: {
+            north: element.north,
+            south: element.south,
+            east: element.east,
+            west: element.west
+          }
+        });
+        rectangles.push(rectangle);
       });
     }
   });
@@ -40,6 +56,14 @@ function getDots() {
 postPixel = function(colour){
   console.log(colour);
 }
+
+function deleteAllRects() {
+  for (rectangle in rectangles) {
+    rectangle.setMap(null)
+    rectangle = null
+  }
+}
+
 $(document).ready(function(){
   var is_interace_open = false;
   $("#peek").click(function(){
