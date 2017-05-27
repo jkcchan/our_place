@@ -105,9 +105,12 @@ function signUp(email, password) {
     data: {email: email, password:password},
     url:'https://our-place.herokuapp.com/users',
     success: function(data) {
+      console.log(data);
       if (data.token) {
         token = data.token;
         localEmail = data.email
+        $("#overlay").fadeOut();
+        $("#login_form").fadeOut();
       }
     }
   });
