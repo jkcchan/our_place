@@ -8,20 +8,21 @@ function initMap() {
   last_updated_at = 0;
 }
 
-function sendLocation() {
+function sendLocation(colour) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-          colour: "#FFFFFF"
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          colour: colour
         };
         $.ajax({
           url:'https://our-place.herokuapp.com/pixels',
           type: 'POST',
           crossDomain: true,
+          dataType: 'json',
           contentType: 'application/json',
-          data: pos,
+          data: JSON.stringify(pos),
           success: function(data) {
             renderRect(data);
           }
@@ -44,26 +45,32 @@ function getRects() {
     success: function(data) {
       last_updated_at = new Date().getTime()
       $.each(data, function(index, element) {
-        console.log(element);
         renderRect(element);
       });
     }
   });
 }
-postPixel = function(colour){
-  console.log(colour);
+function postPixel(colour){
+  sendLocation(rgb2hex(colour))
 }
 
+function rgb2hex(rgb){
+ rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+ return (rgb && rgb.length === 4) ? "#" +
+  ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+  ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+  ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+}
 function renderRect(position) {
-  key = position.north.concat(",", position.west);
+  key = position.south + "," + position.west;
   if (key in rectangles) {
     rectangles[key].setMap(null);
   }
   var rectangle = new google.maps.Rectangle({
-    strokeColor: element.colour,
+    strokeColor: position.colour,
     strokeOpacity: .75,
     strokeWeight: 1,
-    fillColor: element.colour,
+    fillColor: position.colour,
     fillOpacity: 0.75,
     map: map,
     bounds: {
@@ -73,11 +80,12 @@ function renderRect(position) {
       west: position.west
     }
   });
-  rectangles[key] = retangle;
+  rectangles[key] = rectangle;
 }
 
 $(document).ready(function(){
   var is_interace_open = false;
+  var intervalID = setInterval(function(){getRects()}, 60000);
   $("#peek").click(function(){
     if (is_interace_open){
       $("#peek").animate({"bottom":'0vh'});
