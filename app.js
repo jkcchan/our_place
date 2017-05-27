@@ -4,7 +4,8 @@ function initMap() {
     center: {lat: 43.476, lng: -80.536},
     mapTypeId: 'terrain'
   });
-  rectangles = [];
+  rectangles = {};
+  last_updated_at = 0;
 }
 
 function sendLocation() {
@@ -13,14 +14,23 @@ function sendLocation() {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
-          colour: "#fff"
+          colour: "#FFFFFF"
         };
-        $.post("route/pixels", pos);
+        $.ajax({
+          url:'https://our-place.herokuapp.com/pixels',
+          type: 'POST',
+          crossDomain: true,
+          contentType: 'application/json',
+          data: pos,
+          success: function(data) {
+            renderRect(data);
+          }
+        });
       }, function() {
         console.log("LOCATION DIDNT WORK")
       });
     } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+      console.log("GEOLOCATION NOT SUPPORTED");
     }
 }
 
@@ -29,36 +39,37 @@ function getRects() {
     type: 'GET',
     crossDomain: true,
     dataType: 'json',
+    data: {"last_updated_at": last_updated_at},
     url:'https://our-place.herokuapp.com/pixels',
     success: function(data) {
-      deleteAllRects()
+      last_updated_at = new Date().getTime()
       $.each(data, function(index, element) {
-        console.log(element)
-        var rectangle = new google.maps.Rectangle({
-          strokeColor: element.colour,
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35,
-          map: map,
-          bounds: {
-            north: element.north,
-            south: element.south,
-            east: element.east,
-            west: element.west
-          }
-        });
-        rectangles.push(rectangle);
+        console.log(element);
+        renderRect(element);
       });
     }
   });
 }
-
-function deleteAllRects() {
-  for (rectangle in rectangles) {
-    rectangle.setMap(null)
-    rectangle = null
+function renderRect(position) {
+  key = position.north.concat(",", position.west);
+  if (key in rectangles) {
+    rectangles[key].setMap(null);
   }
+  var rectangle = new google.maps.Rectangle({
+    strokeColor: element.colour,
+    strokeOpacity: .75,
+    strokeWeight: 1,
+    fillColor: element.colour,
+    fillOpacity: 0.75,
+    map: map,
+    bounds: {
+      north: position.north,
+      south: position.south,
+      east: position.east,
+      west: position.west
+    }
+  });
+  rectangles[key] = retangle;
 }
 
 $(document).ready(function(){
